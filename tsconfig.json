@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
     "target": "es2020",
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
+    "lib": ["es5", "es6", "es2018"],
+    "module": "commonjs",
+    "moduleResolution": "node",
     "sourceMap": true,
     "baseUrl": "src",
     "outDir": "./dist",
@@ -12,8 +13,9 @@
     "noImplicitAny": true,
     "strict": false,
     "skipLibCheck": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   },
-  "include": ["src/**/*.ts"]
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules", "dist"]
 }

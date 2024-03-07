@@ -1,17 +1,17 @@
 import 'dotenv/config';
-import { DataSource } from 'typeorm';
+import { User } from 'entities/user.entity';
+import { DataSource as TypeOrmDataSource } from 'typeorm';
 
 const dbPort = process.env.DB_PORT ? parseInt(process.env.DB_PORT) : 3306;
 
-export const myDataSource = new DataSource({
+export const DataSource = new TypeOrmDataSource({
   type: 'mysql',
   host: process.env.DB_HOST,
   port: dbPort,
   username: process.env.DB_USER,
   password: process.env.DB_PASS,
   database: process.env.DB_NAME,
-  entities: ['src/entities/*.ts'],
+  entities: [`${__dirname}/../../**/*.entity.ts`],
   migrations: ['src/database/migrations/*.ts'],
-  logging: true,
-  synchronize: true,
+  logging: false,
 });

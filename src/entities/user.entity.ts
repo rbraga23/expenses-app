@@ -2,25 +2,26 @@ import {
   Entity,
   Column,
   CreateDateColumn,
-  PrimaryColumn,
   UpdateDateColumn,
   OneToMany,
+  PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Expense } from './Expense';
-import { UserToken } from './UserToken';
+import { Expense } from './expense.entity';
+import { UserToken } from './user-token.entity';
+import { randomUUID } from 'crypto';
 
 @Entity('users')
 export class User {
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ type: 'varchar' })
   name: string;
 
-  @Column()
+  @Column({ type: 'varchar' })
   email: string;
 
-  @Column()
+  @Column({ type: 'varchar' })
   secret: string;
 
   @CreateDateColumn()
@@ -34,4 +35,10 @@ export class User {
 
   @OneToMany(() => Expense, (expense) => expense.user)
   expenses: Expense[];
+
+  constructor() {
+    if (!this.secret) {
+      this.secret = randomUUID();
+    }
+  }
 }

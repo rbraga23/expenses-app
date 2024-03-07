@@ -3,21 +3,21 @@ import {
   CreateDateColumn,
   Entity,
   ManyToOne,
-  PrimaryColumn,
+  PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { User } from './User';
+import { User } from './user.entity';
 
 @Entity('expenses')
 export class Expense {
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ type: 'varchar' })
   description: string;
 
-  @Column()
-  amount: number;
+  @Column({ type: 'decimal' })
+  value: number;
 
   @CreateDateColumn()
   created_at: Date;

@@ -2,25 +2,27 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
   ManyToOne,
-  PrimaryColumn,
+  PrimaryGeneratedColumn,
 } from 'typeorm';
-import { User } from './User';
+import { User } from './user.entity';
 
 @Entity('user_tokens')
 export class UserToken {
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ type: 'varchar' })
   token: string;
 
-  @Column()
+  @Column({ type: 'datetime', nullable: true })
   expires_at: Date;
 
   @CreateDateColumn()
   created_at: Date;
 
   @ManyToOne(() => User, (user) => user.userTokens)
+  @JoinColumn({ name: 'user_id' })
   user: User;
 }
