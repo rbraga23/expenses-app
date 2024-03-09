@@ -1,9 +1,9 @@
-import { ValidatorMiddleware } from 'api/middlewares/validator.middleware';
-import { UsersController } from 'api/controllers/users.controller';
-import { CreateUserDto } from 'api/dto/create-user.dto';
-import { UpdateUserDto } from 'api/dto/update-user.dto';
+import { ValidatorMiddleware } from '@middlewares/validator.middleware';
+import { UsersController } from '@controllers/users.controller';
+import { CreateUserDto } from '@dto/create-user.dto';
+import { UpdateUserDto } from '@dto/update-user.dto';
+import { AuthMiddleware } from '@middlewares/auth.middleware';
 import { Router } from 'express';
-import { AuthMiddleware } from 'api/middlewares/auth.middleware';
 
 const expensesRoutes = Router();
 const usersController = new UsersController();

@@ -6,7 +6,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { User } from './user.entity';
+import { User } from '@entities/user.entity';
 
 @Entity('expenses')
 export class Expense {
@@ -18,6 +18,9 @@ export class Expense {
 
   @Column({ type: 'decimal' })
   value: number;
+
+  @Column({ type: 'date' })
+  date: Date;
 
   @CreateDateColumn()
   created_at: Date;

@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '@services/auth.service';
 
 export class AuthController {
   private authService: AuthService;
@@ -10,7 +10,6 @@ export class AuthController {
 
   async generateToken(request: Request, response: Response) {
     try {
-      console.log(request.body);
       const token = await this.authService.generateToken(request.body);
 
       return response.status(201).json(token);

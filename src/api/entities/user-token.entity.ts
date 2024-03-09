@@ -6,7 +6,7 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { User } from './user.entity';
+import { User } from '@entities/user.entity';
 import { randomUUID } from 'crypto';
 
 @Entity('user_tokens')

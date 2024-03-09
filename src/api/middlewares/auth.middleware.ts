@@ -1,5 +1,5 @@
-import { DataSource } from 'database/data-source';
-import { UserToken } from 'entities/user-token.entity';
+import { DataSource } from '@database/data-source';
+import { UserToken } from '@entities/user-token.entity';
 import { NextFunction, Request, Response } from 'express';
 import { IsNull, MoreThanOrEqual, Or } from 'typeorm';
 import dayjs from 'dayjs';

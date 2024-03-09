@@ -1,6 +1,6 @@
-import { AuthController } from 'api/controllers/auth.controller';
-import { CreateUserTokenDto } from 'api/dto/create-user-token.dto';
-import { ValidatorMiddleware } from 'api/middlewares/validator.middleware';
+import { AuthController } from '@controllers/auth.controller';
+import { CreateUserTokenDto } from '@dto/create-user-token.dto';
+import { ValidatorMiddleware } from '@middlewares/validator.middleware';
 import { Router } from 'express';
 
 const authRoutes = Router();

@@ -1,5 +1,5 @@
 import { IsEmail, IsOptional, IsString } from 'class-validator';
-import { CreateUserColumns } from './create-user.dto';
+import { CreateUserColumns } from '@dto/create-user.dto';
 
 type UpdateUserColumns = Partial<CreateUserColumns>;
 

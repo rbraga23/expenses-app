@@ -1,18 +1,18 @@
 import { Request, Response } from 'express';
-import { UsersService } from '@services/users.service';
+import { ExpensesService } from '@services/expenses.service';
 
-export class UsersController {
-  private usersService: UsersService;
+export class ExpensesController {
+  private expensesService: ExpensesService;
 
   constructor() {
-    this.usersService = new UsersService();
+    this.expensesService = new ExpensesService();
   }
 
   async findAll(request: Request, response: Response) {
     try {
-      const users = await this.usersService.findAll();
+      const expenses = await this.expensesService.findAll();
 
-      return response.json(users);
+      return response.json(expenses);
     } catch (error) {
       return response.status(400).json({ message: error.message });
     }
@@ -20,7 +20,7 @@ export class UsersController {
 
   async findOne(request: Request, response: Response) {
     try {
-      const user = await this.usersService.findOne(+request.params.id);
+      const user = await this.expensesService.findOne(+request.params.id);
 
       return response.json(user);
     } catch (error) {
@@ -30,7 +30,7 @@ export class UsersController {
 
   async create(request: Request, response: Response) {
     try {
-      const user = await this.usersService.create(request.body);
+      const user = await this.expensesService.create(request.body);
 
       return response.status(201).json(user);
     } catch (error) {
@@ -40,7 +40,7 @@ export class UsersController {
 
   async update(request: Request, response: Response) {
     try {
-      const user = await this.usersService.update(request.body);
+      const user = await this.expensesService.update(request.body);
 
       return response.json(user);
     } catch (error) {
@@ -50,7 +50,7 @@ export class UsersController {
 
   async delete(request: Request, response: Response) {
     try {
-      await this.usersService.delete(+request.params.id);
+      await this.expensesService.delete(+request.params.id);
 
       return response.json({ message: 'User deleted' });
     } catch (error) {

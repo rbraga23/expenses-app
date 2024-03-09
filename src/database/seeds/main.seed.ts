@@ -1,6 +1,6 @@
-import { DataSource } from 'database/data-source';
+import { DataSource } from '@database/data-source';
 import { runSeeder } from 'typeorm-extension';
-import { UserSeeder } from './user.seed';
+import { UserSeeder } from '@database/seeds/user.seed';
 
 (async () => {
   await DataSource.initialize();

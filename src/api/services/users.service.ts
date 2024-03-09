@@ -1,6 +1,6 @@
-import { User } from 'entities/user.entity';
-import { CreateUserDto } from '../dto/create-user.dto';
-import { DataSource } from 'database/data-source';
+import { User } from '@entities/user.entity';
+import { CreateUserDto } from '@dto/create-user.dto';
+import { DataSource } from '@database/data-source';
 import { DeleteResult, Repository } from 'typeorm';
 
 export class UsersService {

@@ -6,8 +6,8 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Expense } from './expense.entity';
-import { UserToken } from './user-token.entity';
+import { Expense } from '@entities/expense.entity';
+import { UserToken } from '@entities/user-token.entity';
 import { randomUUID } from 'crypto';
 
 @Entity('users')

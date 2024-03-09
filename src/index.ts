@@ -5,8 +5,8 @@ import express from 'express';
 import http from 'http';
 import cors from 'cors';
 import helmet from 'helmet';
-import { routes } from './routes';
-import { DataSource } from 'database/data-source';
+import { routes } from '@routes/index';
+import { DataSource } from '@database/data-source';
 
 DataSource.initialize()
   .then(() => {

@@ -1,8 +1,8 @@
-import { User } from 'entities/user.entity';
-import { DataSource } from 'database/data-source';
+import { DataSource } from '@database/data-source';
 import { Repository } from 'typeorm';
-import { UserToken } from 'entities/user-token.entity';
-import { CreateUserTokenDto } from 'api/dto/create-user-token.dto';
+import { User } from '@entities/user.entity';
+import { UserToken } from '@entities/user-token.entity';
+import { CreateUserTokenDto } from '@dto/create-user-token.dto';
 import dayjs from 'dayjs';
 
 interface GenerateTokenResponse {

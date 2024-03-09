@@ -5,7 +5,7 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "sourceMap": true,
-    "baseUrl": "src",
+    "baseUrl": "./src",
     "outDir": "./dist",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
@@ -14,7 +14,16 @@
     "strict": false,
     "skipLibCheck": true,
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    "paths": {
+      "@database/*": ["database/*"],
+      "@entities/*": ["api/entities/*"],
+      "@services/*": ["api/services/*"],
+      "@controllers/*": ["api/controllers/*"],
+      "@middlewares/*": ["api/middlewares/*"],
+      "@dto/*": ["api/dto/*"],
+      "@routes/*": ["routes/*"]
+    }
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules", "dist"]

@@ -1,5 +1,5 @@
 import { IsEmail, IsInt, IsOptional, IsString } from 'class-validator';
-import { User } from 'entities/user.entity';
+import { User } from '@entities/user.entity';
 
 export type CreateUserTokenColumns = Pick<User, 'email' | 'refresh_token'> & {
   expires_in: number;

@@ -1,5 +1,5 @@
 import { randomUUID } from 'crypto';
-import { User } from 'entities/user.entity';
+import { User } from 'api/entities/user.entity';
 
 import { DataSource } from 'typeorm';
 import { Seeder } from 'typeorm-extension';
