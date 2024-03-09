@@ -22,7 +22,10 @@ export class User {
   email: string;
 
   @Column({ type: 'varchar' })
-  secret: string;
+  refresh_token: string;
+
+  @Column({ type: 'tinyint', default: 0 })
+  role: number;
 
   @CreateDateColumn()
   created_at: Date;
@@ -37,8 +40,8 @@ export class User {
   expenses: Expense[];
 
   constructor() {
-    if (!this.secret) {
-      this.secret = randomUUID();
+    if (!this.refresh_token) {
+      this.refresh_token = randomUUID();
     }
   }
 }

@@ -1,10 +1,10 @@
 import 'dotenv/config';
-import { User } from 'entities/user.entity';
-import { DataSource as TypeOrmDataSource } from 'typeorm';
+import { DataSourceOptions, DataSource as TypeOrmDataSource } from 'typeorm';
+import { SeederOptions } from 'typeorm-extension';
 
 const dbPort = process.env.DB_PORT ? parseInt(process.env.DB_PORT) : 3306;
 
-export const DataSource = new TypeOrmDataSource({
+const options: DataSourceOptions & SeederOptions = {
   type: 'mysql',
   host: process.env.DB_HOST,
   port: dbPort,
@@ -13,5 +13,8 @@ export const DataSource = new TypeOrmDataSource({
   database: process.env.DB_NAME,
   entities: [`${__dirname}/../../**/*.entity.ts`],
   migrations: ['src/database/migrations/*.ts'],
+  seeds: ['src/database/seeds/*.ts'],
   logging: false,
-});
+};
+
+export const DataSource = new TypeOrmDataSource(options);

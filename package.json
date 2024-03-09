@@ -10,6 +10,7 @@
     "typeorm": "npx typeorm",
     "migration:run": "npx typeorm-ts-node-commonjs migration:run -d src/database/data-source.ts",
     "migration:revert": "npx typeorm-ts-node-commonjs migration:revert -d src/database/data-source.ts",
+    "seed:run": "tsx src/database/seeds/main.seed.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -24,7 +25,8 @@
     "helmet": "^7.1.0",
     "mysql2": "^3.9.2",
     "reflect-metadata": "^0.2.1",
-    "typeorm": "^0.3.20"
+    "typeorm": "^0.3.20",
+    "typeorm-extension": "^3.5.0"
   },
   "devDependencies": {
     "@types/body-parser": "^1.19.5",

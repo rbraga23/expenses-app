@@ -2,13 +2,13 @@ import { validateOrReject } from 'class-validator';
 import { Request, Response, NextFunction } from 'express';
 
 type Constructor<T> = {
-  new (args: any): T;
+  new (args: unknown): T;
 };
 
 type ValidationError = { [key: string]: string[] };
 
 export class ValidatorMiddleware {
-  static validate<T extends {}>(DtoClass: Constructor<T>) {
+  static validate<T extends NonNullable<unknown>>(DtoClass: Constructor<T>) {
     return async (request: Request, response: Response, next: NextFunction) => {
       try {
         const dto = new DtoClass(request.body);

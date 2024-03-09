@@ -23,9 +23,14 @@ export class CreateUsers1709761723350 implements MigrationInterface {
             isUnique: true,
           },
           {
-            name: 'secret',
+            name: 'refresh_token',
             type: 'varchar',
             isUnique: true,
+          },
+          {
+            name: 'role',
+            type: 'tinyint',
+            default: 0,
           },
           {
             name: 'created_at',

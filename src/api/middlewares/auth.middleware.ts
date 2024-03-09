@@ -5,22 +5,16 @@ import { IsNull, MoreThanOrEqual, Or } from 'typeorm';
 import dayjs from 'dayjs';
 
 export class AuthMiddleware {
-  static async authenticate(
+  private repository = DataSource.getRepository(UserToken);
+
+  async authenticateMaster(
     request: Request,
     response: Response,
     next: NextFunction,
   ) {
     try {
       const headerToken = request.headers.authorization;
-      const repository = DataSource.getRepository(UserToken);
-
-      const token = await repository.findOneOrFail({
-        where: {
-          token: headerToken.replace('Bearer ', ''),
-          expires_at: Or(IsNull(), MoreThanOrEqual(dayjs().toDate())),
-        },
-        relations: ['user'],
-      });
+      const token = await this.getToken(headerToken, 0);
 
       request.body.user = token.user;
     } catch (error) {
@@ -28,5 +22,36 @@ export class AuthMiddleware {
     }
 
     return next();
+  }
+
+  async authenticateUser(
+    request: Request,
+    response: Response,
+    next: NextFunction,
+  ) {
+    try {
+      const headerToken = request.headers.authorization;
+      const token = await this.getToken(headerToken, 1);
+
+      request.body.user = token.user;
+    } catch (error) {
+      return response.status(401).json({ message: 'Unauthorized' });
+    }
+
+    return next();
+  }
+
+  async getToken(token: string, role: number): Promise<UserToken> {
+    console.log(token);
+    return await this.repository.findOneOrFail({
+      where: {
+        token: token.replace('Bearer ', ''),
+        expires_at: Or(IsNull(), MoreThanOrEqual(dayjs().toDate())),
+        user: {
+          role,
+        },
+      },
+      relations: ['user'],
+    });
   }
 }

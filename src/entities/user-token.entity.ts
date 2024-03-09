@@ -7,6 +7,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { User } from './user.entity';
+import { randomUUID } from 'crypto';
 
 @Entity('user_tokens')
 export class UserToken {
@@ -25,4 +26,10 @@ export class UserToken {
   @ManyToOne(() => User, (user) => user.userTokens)
   @JoinColumn({ name: 'user_id' })
   user: User;
+
+  constructor() {
+    if (!this.token) {
+      this.token = randomUUID();
+    }
+  }
 }
