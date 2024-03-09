@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "tsx watch src/index.ts",
     "start": "tsx src/index.ts",
-    "build": "tsc",
+    "build": "tsc && tsc-alias",
     "typeorm": "tsx -r tsconfig-paths/register ./node_modules/.bin/typeorm",
     "migration:run": "npm run typeorm migration:run -- -d src/database/data-source.ts",
     "migration:revert": "npm run typeorm migration:revert -- -d src/database/data-source.ts",
@@ -46,6 +46,7 @@
     "prettier": "^3.2.5",
     "ts-jest": "^29.1.2",
     "ts-node": "^10.9.2",
+    "tsc-alias": "^1.8.8",
     "tsconfig-paths": "^4.2.0",
     "tsx": "^4.7.1",
     "typescript": "^5.3.3"

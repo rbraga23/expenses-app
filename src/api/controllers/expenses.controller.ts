@@ -10,7 +10,7 @@ export class ExpensesController {
 
   async findAll(request: Request, response: Response) {
     try {
-      const expenses = await this.expensesService.findAll();
+      const expenses = await this.expensesService.findAll(request.body.user);
 
       return response.json(expenses);
     } catch (error) {
@@ -20,9 +20,12 @@ export class ExpensesController {
 
   async findOne(request: Request, response: Response) {
     try {
-      const user = await this.expensesService.findOne(+request.params.id);
+      const expense = await this.expensesService.findOne(
+        +request.params.id,
+        request.body.user,
+      );
 
-      return response.json(user);
+      return response.json(expense);
     } catch (error) {
       return response.status(400).json({ message: error.message });
     }
@@ -30,9 +33,12 @@ export class ExpensesController {
 
   async create(request: Request, response: Response) {
     try {
-      const user = await this.expensesService.create(request.body);
+      const expense = await this.expensesService.create(
+        request.body,
+        request.body.user,
+      );
 
-      return response.status(201).json(user);
+      return response.status(201).json(expense);
     } catch (error) {
       return response.status(400).json({ message: error.message });
     }
@@ -40,9 +46,13 @@ export class ExpensesController {
 
   async update(request: Request, response: Response) {
     try {
-      const user = await this.expensesService.update(request.body);
+      const expense = await this.expensesService.update(
+        +request.params.id,
+        request.body,
+        request.body.user,
+      );
 
-      return response.json(user);
+      return response.json(expense);
     } catch (error) {
       return response.status(400).json({ message: error.message });
     }
@@ -50,9 +60,9 @@ export class ExpensesController {
 
   async delete(request: Request, response: Response) {
     try {
-      await this.expensesService.delete(+request.params.id);
+      await this.expensesService.delete(+request.params.id, request.body.user);
 
-      return response.json({ message: 'User deleted' });
+      return response.json({ message: 'Expense deleted' });
     } catch (error) {
       return response.status(400).json({ message: error.message });
     }

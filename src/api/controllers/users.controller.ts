@@ -40,7 +40,10 @@ export class UsersController {
 
   async update(request: Request, response: Response) {
     try {
-      const user = await this.usersService.update(request.body);
+      const user = await this.usersService.update(
+        +request.params.id,
+        request.body,
+      );
 
       return response.json(user);
     } catch (error) {

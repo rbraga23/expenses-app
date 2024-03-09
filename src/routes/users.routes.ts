@@ -29,6 +29,6 @@ usersRoutes.put(
   usersController.update.bind(usersController),
 );
 
-usersRoutes.delete('/users/:id', usersController.delete);
+usersRoutes.delete('/users/:id', usersController.delete.bind(usersController));
 
 export { usersRoutes };

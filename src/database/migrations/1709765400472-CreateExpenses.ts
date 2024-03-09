@@ -28,6 +28,10 @@ export class CreateExpenses1709765400472 implements MigrationInterface {
             scale: 2,
           },
           {
+            name: 'date',
+            type: 'date',
+          },
+          {
             name: 'created_at',
             type: 'timestamp',
             default: 'now()',

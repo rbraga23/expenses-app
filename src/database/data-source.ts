@@ -15,8 +15,8 @@ const options: DataSourceOptions & SeederOptions = {
   password: process.env.DB_PASS,
   database: process.env.DB_NAME,
   entities: [`${__dirname}/../api/entities/*.entity{.ts,.js}`],
-  migrations: ['src/database/migrations/*.ts'],
-  seeds: ['src/database/seeds/*.ts'],
+  migrations: [`${__dirname}/migrations/*{.ts,.js}`],
+  seeds: [`${__dirname}/seeds/*{.ts,.js}`],
   logging: false,
 };
 

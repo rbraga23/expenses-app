@@ -2,6 +2,7 @@ import { User } from '@entities/user.entity';
 import { CreateUserDto } from '@dto/create-user.dto';
 import { DataSource } from '@database/data-source';
 import { DeleteResult, Repository } from 'typeorm';
+import { UpdateUserDto } from '@dto/update-user.dto';
 
 export class UsersService {
   private users: Repository<User>;
@@ -30,12 +31,14 @@ export class UsersService {
     return user;
   }
 
-  async update(createUserDto: CreateUserDto): Promise<User> {
-    const user = this.users.create(createUserDto);
+  async update(id: number, updateUserDto: UpdateUserDto): Promise<User> {
+    const user = await this.users.findOneBy({ id });
 
-    if (await this.users.findOneBy({ email: user.email })) {
-      throw new Error('User already exists');
+    if (!user) {
+      throw new Error('User not found');
     }
+
+    Object.assign(user, updateUserDto);
 
     await this.users.save(user);
 
@@ -44,7 +47,7 @@ export class UsersService {
 
   async delete(id: number): Promise<DeleteResult> {
     if (!(await this.users.findOneBy({ id }))) {
-      throw new Error('User already exists');
+      throw new Error('User not found');
     }
 
     return await this.users.delete(id);

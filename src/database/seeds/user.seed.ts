@@ -9,23 +9,39 @@ export class UserSeeder implements Seeder {
 
   public async run(dataSource: DataSource): Promise<void> {
     const userRepository = dataSource.getRepository(User);
-    const refresh_token = randomUUID();
+    const masterRefreshToken = randomUUID();
+    const regularRefreshToken = randomUUID();
 
-    const userData = {
+    const masterUserData = {
       name: 'root',
       email: 'root@root.com',
-      type: 0,
-      refresh_token,
+      role: 0,
+      refreshToken: masterRefreshToken,
     };
 
-    const user = userRepository.create(userData);
+    const regularUserData = {
+      name: 'user',
+      email: 'user@user.com',
+      role: 1,
+      refreshToken: regularRefreshToken,
+    };
+
+    const masterUser = userRepository.create(masterUserData);
+    const regularUser = userRepository.create(regularUserData);
 
     try {
-      await userRepository.save(user);
+      await userRepository.save(masterUser);
+      await userRepository.save(regularUser);
 
-      console.info('name:', user.name);
-      console.info('email:', user.email);
-      console.info('refresh token:', refresh_token);
+      console.info('master user:', '\n');
+      console.info('name:', masterUser.name);
+      console.info('email:', masterUser.email);
+      console.info('refresh token:', masterRefreshToken, '\n');
+
+      console.info('regular user:', '\n');
+      console.info('name:', regularUser.name);
+      console.info('email:', regularUser.email);
+      console.info('refresh token:', regularRefreshToken);
     } catch (error) {
       console.error(error.message);
     }
