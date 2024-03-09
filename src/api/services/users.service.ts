@@ -10,6 +10,14 @@ export class UsersService {
     this.users = DataSource.getRepository(User);
   }
 
+  async findAll(): Promise<User[]> {
+    return await this.users.find();
+  }
+
+  async findOne(id: number): Promise<User> {
+    return await this.users.findOneBy({ id });
+  }
+
   async create(createUserDto: CreateUserDto): Promise<User> {
     const user = this.users.create(createUserDto);
 

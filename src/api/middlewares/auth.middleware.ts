@@ -42,7 +42,6 @@ export class AuthMiddleware {
   }
 
   async getToken(token: string, role: number): Promise<UserToken> {
-    console.log(token);
     return await this.repository.findOneOrFail({
       where: {
         token: token.replace('Bearer ', ''),

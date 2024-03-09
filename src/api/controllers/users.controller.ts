@@ -8,6 +8,26 @@ export class UsersController {
     this.usersService = new UsersService();
   }
 
+  async findAll(request: Request, response: Response) {
+    try {
+      const users = await this.usersService.findAll();
+
+      return response.json(users);
+    } catch (error) {
+      return response.status(400).json({ message: error.message });
+    }
+  }
+
+  async findOne(request: Request, response: Response) {
+    try {
+      const user = await this.usersService.findOne(+request.params.id);
+
+      return response.json(user);
+    } catch (error) {
+      return response.status(400).json({ message: error.message });
+    }
+  }
+
   async create(request: Request, response: Response) {
     try {
       const user = await this.usersService.create(request.body);

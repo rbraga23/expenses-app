@@ -14,8 +14,8 @@ usersRoutes.all(
   authMiddleware.authenticateMaster.bind(authMiddleware),
 );
 
-usersRoutes.get('/users', usersController.create);
-usersRoutes.get('/users/:id', usersController.create);
+usersRoutes.get('/users', usersController.findAll.bind(usersController));
+usersRoutes.get('/users/:id', usersController.findOne.bind(usersController));
 
 usersRoutes.post(
   '/users',
