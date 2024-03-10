@@ -1,7 +1,7 @@
 import { AuthService } from '@services/auth.service';
 import { CreateUserTokenDto } from '@dto/create-user-token.dto';
 
-describe('AuthService', () => {
+describe('AuthService - generate token', () => {
   let service: AuthService;
   let createUserTokenDto: CreateUserTokenDto;
 
@@ -21,9 +21,8 @@ describe('AuthService', () => {
   });
 
   it('should throw an unauthorized error', async () => {
-    expect(async () => {
-      createUserTokenDto.refresh_token = 'invalid_refresh_token';
-      await service.generateToken(createUserTokenDto);
-    }).rejects.toThrow();
+    createUserTokenDto.refresh_token = 'invalid_refresh_token';
+
+    await expect(service.generateToken(createUserTokenDto)).rejects.toThrow();
   });
 });

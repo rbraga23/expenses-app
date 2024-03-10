@@ -1,20 +1,31 @@
-import { IsDateString, IsNumber, IsOptional, IsString } from 'class-validator';
+import {
+  IsDateString,
+  IsNumber,
+  IsOptional,
+  IsPositive,
+  IsString,
+  MaxLength,
+} from 'class-validator';
 import { CreateExpenseDto } from './create-expense.dto';
+import { IsNotFutureDate } from '@utils/validators/is-not-future.validator';
 
 export type UpdateExpenseColumns = Partial<CreateExpenseDto>;
 
 export class UpdateExpenseDto implements UpdateExpenseColumns {
   @IsString()
+  @MaxLength(191)
   @IsOptional()
-  description: string;
+  description?: string;
 
   @IsNumber()
+  @IsPositive()
   @IsOptional()
-  value: number;
+  value?: number;
 
   @IsDateString()
+  @IsNotFutureDate()
   @IsOptional()
-  date: Date;
+  date?: Date;
 
   constructor(updateExpenseDto: UpdateExpenseColumns) {
     this.description = updateExpenseDto.description;

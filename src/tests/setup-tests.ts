@@ -7,3 +7,19 @@ beforeAll(async () => {
 afterAll(async () => {
   await DataSource.destroy();
 });
+
+export const sendEmailMock = jest
+  .fn()
+  .mockReturnValueOnce({ data: { id: 'mock_id' }, error: null });
+
+jest.mock('resend', () => {
+  return {
+    Resend: jest.fn().mockImplementation(() => {
+      return {
+        emails: {
+          send: sendEmailMock,
+        },
+      };
+    }),
+  };
+});

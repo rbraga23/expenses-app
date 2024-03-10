@@ -16,6 +16,8 @@ const config: Config = {
     '^@middlewares/(.*)$': '<rootDir>/src/api/middlewares/$1',
     '^@dto/(.*)$': '<rootDir>/src/api/dto/$1',
     '^@routes/(.*)$': '<rootDir>/src/routes/$1',
+    '^@utils/(.*)$': '<rootDir>/src/utils/$1',
+    '^@tests/(.*)$': '<rootDir>/src/tests/$1',
   },
   preset: 'ts-jest',
   testMatch: ['**/**/*.spec.ts'],

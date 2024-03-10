@@ -6,7 +6,7 @@ import {
   MaxLength,
 } from 'class-validator';
 import { Expense } from '@entities/expense.entity';
-import { IsNotFutureDate } from 'utils/validators/is-not-future.validator';
+import { IsNotFutureDate } from '@utils/validators/is-not-future.validator';
 
 export type CreateExpenseColumns = Pick<
   Expense,

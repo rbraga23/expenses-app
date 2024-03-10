@@ -14,11 +14,17 @@ export class EmailService {
   }
 
   async send({ to, subject, html }: EmailOptions) {
-    return await this.resend.emails.send({
+    const { data, error } = await this.resend.emails.send({
       from: process.env.RESEND_FROM_EMAIL,
       to,
       subject,
       html: html,
     });
+
+    if (error) {
+      throw new Error(error.message);
+    }
+
+    return data;
   }
 }

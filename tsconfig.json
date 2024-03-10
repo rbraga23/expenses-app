@@ -21,7 +21,9 @@
       "@controllers/*": ["api/controllers/*"],
       "@middlewares/*": ["api/middlewares/*"],
       "@dto/*": ["api/dto/*"],
-      "@routes/*": ["routes/*"]
+      "@routes/*": ["routes/*"],
+      "@utils/*": ["utils/*"],
+      "@tests/*": ["tests/*"]
     }
   },
   "include": ["src/**/*.ts"],
