@@ -9,6 +9,7 @@ const config: Config = {
   clearMocks: true,
   coverageProvider: 'v8',
   moduleNameMapper: {
+    '@app': '<rootDir>/src/index.ts',
     '^@database/(.*)$': '<rootDir>/src/database/$1',
     '^@entities/(.*)$': '<rootDir>/src/api/entities/$1',
     '^@services/(.*)$': '<rootDir>/src/api/services/$1',
