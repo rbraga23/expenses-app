@@ -11,6 +11,7 @@ APP responsável para gerenciamento de despesas
 
 - NodeJS ([Express](https://expressjs.com/))
 - MySQL ([typeorm](https://typeorm.io/))
+- jest
 - npm
 - Docker
 
