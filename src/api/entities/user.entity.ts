@@ -33,10 +33,14 @@ export class User {
   @UpdateDateColumn()
   updated_at: Date;
 
-  @OneToMany(() => UserToken, (userToken) => userToken.user)
+  @OneToMany(() => UserToken, (userToken) => userToken.user, {
+    cascade: true,
+  })
   userTokens: UserToken[];
 
-  @OneToMany(() => Expense, (expense) => expense.user)
+  @OneToMany(() => Expense, (expense) => expense.user, {
+    cascade: true,
+  })
   expenses: Expense[];
 
   constructor() {

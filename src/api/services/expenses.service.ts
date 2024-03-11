@@ -18,11 +18,18 @@ export class ExpensesService {
   }
 
   async findAll(user: User): Promise<Expense[]> {
-    return await this.expenses.findBy({ user });
+    return await this.expenses.findBy({ user: { id: user.id } });
   }
 
   async findOne(id: number, user: User): Promise<Expense> {
-    return await this.expenses.findOneBy({ id, user });
+    const expense = await this.expenses.findOneBy({
+      id,
+      user: {
+        id: user.id,
+      },
+    });
+
+    return expense;
   }
 
   async create(
@@ -58,7 +65,10 @@ export class ExpensesService {
     updateExpenseDto: UpdateExpenseDto,
     user: User,
   ): Promise<Expense> {
-    const expense = await this.expenses.findOneBy({ id, user });
+    const expense = await this.expenses.findOneBy({
+      id,
+      user: { id: user.id },
+    });
 
     if (!expense) {
       throw new Error('Expense not found');
@@ -72,7 +82,7 @@ export class ExpensesService {
   }
 
   async delete(id: number, user: User): Promise<DeleteResult> {
-    if (!(await this.expenses.findOneBy({ id, user }))) {
+    if (!(await this.expenses.findOneBy({ id, user: { id: user.id } }))) {
       throw new Error('Expense not found');
     }
 

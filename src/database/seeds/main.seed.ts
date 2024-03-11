@@ -5,4 +5,6 @@ import { UserSeeder } from '@database/seeds/user.seed';
 (async () => {
   await DataSource.initialize();
   await runSeeder(DataSource, UserSeeder);
+
+  process.exit(0);
 })();

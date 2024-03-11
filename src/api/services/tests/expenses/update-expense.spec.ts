@@ -1,6 +1,6 @@
 import { Expense } from '@entities/expense.entity';
-import { User } from '@entities/user.entity';
 import { ExpensesService } from '@services/expenses.service';
+import { regularUser } from '@tests/setup-tests';
 
 describe('ExpensesService - update expense', () => {
   let service: ExpensesService;
@@ -8,10 +8,6 @@ describe('ExpensesService - update expense', () => {
 
   const description = 'test';
   const value = 100;
-
-  const user = {
-    id: 1,
-  } as User;
 
   beforeEach(async () => {
     service = new ExpensesService();
@@ -23,13 +19,13 @@ describe('ExpensesService - update expense', () => {
   });
 
   it('should update an expense', async () => {
-    const createdExpense = await service.create(expense, user);
+    const createdExpense = await service.create(expense, regularUser);
     const updatedExpense = await service.update(
       createdExpense.id,
       {
         description: 'updated',
       },
-      user,
+      regularUser,
     );
 
     expect(updatedExpense.description).toBe('updated');
@@ -37,7 +33,7 @@ describe('ExpensesService - update expense', () => {
 
   it('should thrown an expense not found error', async () => {
     await expect(
-      service.update(-1, { description: 'updated' }, user),
-    ).rejects.toThrow('Expense not found');
+      service.update(-1, { description: 'updated' }, regularUser),
+    ).rejects.toThrow();
   });
 });

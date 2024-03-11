@@ -14,6 +14,8 @@ const options: DataSourceOptions & SeederOptions = {
   username: process.env.DB_USER,
   password: process.env.DB_PASS,
   database: process.env.DB_NAME,
+  dropSchema: process.env.NODE_ENV === 'test',
+  synchronize: process.env.NODE_ENV === 'test',
   entities: [`${__dirname}/../api/entities/*.entity{.ts,.js}`],
   migrations: [`${__dirname}/migrations/*{.ts,.js}`],
   seeds: [`${__dirname}/seeds/*{.ts,.js}`],

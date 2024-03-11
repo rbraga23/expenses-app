@@ -1,8 +1,6 @@
 import { Expense } from '@entities/expense.entity';
-import { User } from '@entities/user.entity';
 import { ExpensesService } from '@services/expenses.service';
-
-jest.mock('resend');
+import { regularUser } from '@tests/setup-tests';
 
 describe('ExpensesService - delete expense', () => {
   let service: ExpensesService;
@@ -11,10 +9,6 @@ describe('ExpensesService - delete expense', () => {
   const description = 'test';
   const value = 100;
   const date = new Date();
-
-  const user = {
-    id: 1,
-  } as User;
 
   beforeEach(async () => {
     service = new ExpensesService();
@@ -26,13 +20,15 @@ describe('ExpensesService - delete expense', () => {
   });
 
   it('should delete a expense', async () => {
-    const createdExpense = await service.create(expense, user);
-    const deletedExpense = await service.delete(createdExpense.id, user);
+    const createdExpense = await service.create(expense, regularUser);
+    const deletedExpense = await service.delete(createdExpense.id, regularUser);
 
     expect(deletedExpense).toHaveProperty('affected');
   });
 
   it('should thrown an expense not found error', async () => {
-    await expect(service.delete(-1, user)).rejects.toThrow('Expense not found');
+    await expect(service.delete(-1, regularUser)).rejects.toThrow(
+      'Expense not found',
+    );
   });
 });

@@ -1,5 +1,6 @@
 import { AuthService } from '@services/auth.service';
 import { CreateUserTokenDto } from '@dto/create-user-token.dto';
+import { masterUser } from '@tests/setup-tests';
 
 describe('AuthService - generate token', () => {
   let service: AuthService;
@@ -8,8 +9,8 @@ describe('AuthService - generate token', () => {
   beforeEach(async () => {
     service = new AuthService();
     createUserTokenDto = {
-      email: process.env.TEST_USER_EMAIL,
-      refresh_token: process.env.TEST_USER_REFRESH_TOKEN,
+      email: masterUser.email,
+      refresh_token: masterUser.refresh_token,
       expires_in: 60 * 60 * 8,
     };
   });

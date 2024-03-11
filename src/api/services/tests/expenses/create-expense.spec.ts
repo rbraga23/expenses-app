@@ -1,6 +1,6 @@
 import { CreateExpenseDto } from '@dto/create-expense.dto';
-import { User } from '@entities/user.entity';
 import { ExpensesService } from '@services/expenses.service';
+import { regularUser } from '@tests/setup-tests';
 import { ValidationError, validateOrReject } from 'class-validator';
 import dayjs from 'dayjs';
 
@@ -10,10 +10,6 @@ describe('expensesService - create expense', () => {
 
   const description = 'test';
   const value = 100;
-
-  const user = {
-    id: 1,
-  } as User;
 
   beforeEach(async () => {
     service = new ExpensesService();
@@ -25,7 +21,7 @@ describe('expensesService - create expense', () => {
   });
 
   it('should create an expense', async () => {
-    const createdExpense = await service.create(expense, user);
+    const createdExpense = await service.create(expense, regularUser);
 
     expect(createdExpense).toHaveProperty('id');
   });
@@ -43,7 +39,7 @@ describe('expensesService - create expense', () => {
     } catch (error) {
       expect(
         error.find((err: ValidationError) => err.property === 'date'),
-      ).toHaveProperty('date');
+      ).toBeDefined();
     }
   });
 
@@ -60,7 +56,7 @@ describe('expensesService - create expense', () => {
     } catch (error) {
       expect(
         error.find((err: ValidationError) => err.property === 'value'),
-      ).toHaveProperty('value');
+      ).toBeDefined();
     }
   });
 });

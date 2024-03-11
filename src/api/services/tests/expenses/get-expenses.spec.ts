@@ -1,8 +1,6 @@
 import { Expense } from '@entities/expense.entity';
-import { User } from '@entities/user.entity';
 import { ExpensesService } from '@services/expenses.service';
-
-jest.mock('resend');
+import { regularUser } from '@tests/setup-tests';
 
 const expenseMock = {
   id: 2,
@@ -12,8 +10,6 @@ const expenseMock = {
   created_at: new Date(),
   updated_at: new Date(),
 } as Expense;
-
-const userMock = { id: 1 } as User;
 
 describe('ExpensesService - get expenses', () => {
   let service: ExpensesService;
@@ -27,7 +23,7 @@ describe('ExpensesService - get expenses', () => {
       .spyOn(service, 'findAll')
       .mockReturnValue(Promise.resolve([expenseMock]));
 
-    const expenses = await service.findAll(userMock);
+    const expenses = await service.findAll(regularUser);
 
     expect(expenses).toBeInstanceOf(Array);
   });
@@ -37,7 +33,7 @@ describe('ExpensesService - get expenses', () => {
       .spyOn(service, 'findOne')
       .mockReturnValue(Promise.resolve(expenseMock));
 
-    const user = await service.findOne(1, userMock);
+    const user = await service.findOne(1, regularUser);
 
     expect(user).toHaveProperty('id');
   });

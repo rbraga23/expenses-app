@@ -1,11 +1,12 @@
 import { app } from '@app';
+import { masterUser, regularUser } from '@tests/setup-tests';
 import request from 'supertest';
 
 describe('AuthController', () => {
   it('should be able to create a new master token', async () => {
     const response = await request(app).post('/auth/refresh').send({
-      email: 'root@root.com',
-      refresh_token: '76a52f01-dea7-41da-aedf-5d49195786e4',
+      email: masterUser.email,
+      refresh_token: masterUser.refresh_token,
     });
 
     expect(response.status).toBe(201);
@@ -15,8 +16,8 @@ describe('AuthController', () => {
 
   it('should be able to create a new user token', async () => {
     const response = await request(app).post('/auth/refresh').send({
-      email: 'user@user.com',
-      refresh_token: '8cb451da-6823-4a33-9591-62e506f84e47',
+      email: regularUser.email,
+      refresh_token: regularUser.refresh_token,
     });
 
     expect(response.status).toBe(201);

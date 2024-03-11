@@ -2,7 +2,7 @@ import { EmailService, EmailOptions } from '@services/email.service';
 import { sendEmailMock } from '@tests/setup-tests';
 
 const emailOptions: EmailOptions = {
-  to: 'teste@teste.com',
+  to: 'test@test.com',
   subject: 'Test email',
   html: '<p>Test email</p>',
 };

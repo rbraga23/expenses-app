@@ -11,9 +11,7 @@
     "migration:run": "npm run typeorm migration:run -- -d src/database/data-source.ts",
     "migration:revert": "npm run typeorm migration:revert -- -d src/database/data-source.ts",
     "seed:run": "tsx src/database/seeds/main.seed.ts",
-    "test:migration:run": "NODE_ENV=test npm run typeorm migration:run -- -d src/database/data-source.ts",
-    "test:migration:revert": "NODE_ENV=test npm run typeorm migration:revert -- -d src/database/data-source.ts",
-    "test:seed:run": "NODE_ENV=test tsx src/database/seeds/main.seed.ts",
+    "migrate": "npm run migration:run && npm run seed:run",
     "test": "DOTENV_CONFIG_PATH=.env.test jest"
   },
   "keywords": [],
