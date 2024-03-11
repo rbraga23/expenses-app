@@ -64,7 +64,7 @@ Arquivo .env.test
 Rode as migrations e seeds para popular o banco de dados
 
 ```bash
-  num rum prepare
+  npm run prepare
 ```
 
 Inicie as aplicações, existem duas formas, pod optar por por rodar manualmente ou utilizar o docker
