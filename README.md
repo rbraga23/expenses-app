@@ -86,3 +86,15 @@ Caso preficar rodar cada container individualmente
 ```bash
   docker compose up <nome_do_serviço>
 ```
+
+Executar testes
+
+```bash
+  npm run test
+```
+
+Executar testes indiviualmente
+
+```bash
+  npm run test <testCase1> <TestCase2>
+```
